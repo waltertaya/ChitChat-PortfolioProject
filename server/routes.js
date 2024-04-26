@@ -15,8 +15,8 @@ router.get('/login', (req, res) => {
 
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
-    console.log(username, password);
-    console.log(process.env.USERNAME, process.env.PASSWORD);
+    // console.log(username, password);
+    // console.log(process.env.USERNAME, process.env.PASSWORD);
     if (username === process.env.USERNAME && password === process.env.PASSWORD) {
         req.session.loggedIn = true;
         // console.log('Logged in');
