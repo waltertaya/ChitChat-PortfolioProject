@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Enter OTP</h2>
+        <form action="/otp" method="post" class="otp-form">
+            <div class="otp-input-container">
+                <input type="text" class="otp-input" maxlength="1" name="otp1" required>
+                <input type="text" class="otp-input" maxlength="1" name="otp2" required>
+                <input type="text" class="otp-input" maxlength="1" name="otp3" required>
+                <input type="text" class="otp-input" maxlength="1" name="otp4" required>
+                <input type="text" class="otp-input" maxlength="1" name="otp5" required>
+                <input type="text" class="otp-input" maxlength="1" name="otp6" required>
+            </div>
+            <button type="submit">Verify OTP</button>
+        </form>        
+    </div>
+</body>
+</html>
