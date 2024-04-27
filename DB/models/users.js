@@ -15,10 +15,6 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
-    previousChats: {
-        type: Object,
-        default: {}
-    },
     name: {
         type: String,
         required: true

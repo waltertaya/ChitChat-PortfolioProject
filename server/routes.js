@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const db = require('../DB/db');
 const User = require('../DB/models/users');
+const Chat = require('../DB/models/chats');
 const nodemailer = require('nodemailer');
 const Mailgen = require('mailgen');
 const generateOTP = require('../DB/security/otp');
@@ -120,9 +121,34 @@ router.get('/logout', (req, res) => {
     res.redirect('/login');
 });
 
-router.get('/', (req, res) => {
-    const data = {"message": "You are logged in!. You can now access our api routes"};
-    res.json(data);
+router.get('/profile', (req, res) => {
+    res.render('profile');
+});
+
+router.get('/update', (req, res) => {
+    res.render('edit-profile');
+});
+
+router.post('/update', async (req, res) => {
+    const { username, password, email, gender } = req.body;
+    const user = await User.findOne({ username });
+    if (user) {
+        user.password = await hashPassword(password);
+        user.email = email;
+        user.gender = gender;
+        await user.save();
+        res.redirect('/profile');
+    }
+});
+
+router.get('/', async (req, res) => {  
+    const userChats = await Chat.findOne({ username: req.session.user.username });
+    if (userChats) {
+        const messages = userChats.messages;
+        res.render('index', { messages });
+    } else {
+        res.render('index');
+    }
 });
 
 module.exports = router;

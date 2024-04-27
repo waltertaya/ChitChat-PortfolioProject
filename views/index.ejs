@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChitChat AI</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box">
+            <% messages.forEach(message => { %>
+                <% if (message.sender === 'user') { %>
+                    <div class="user-message">
+                        <div class="message sent">
+                            <div class="text"><%= message.content %></div>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="message received">
+                        <div class="avatar"></div>
+                        <div class="text"><%= message.content %></div>
+                    </div>
+                <% } %>
+            <% }); %>
+        </div>        
+        <div class="input-box">
+            <input type="text" placeholder="Type your message...">
+            <button>Send</button>
+        </div>
+    </div>
+    <script type="module" src="js/script.js"></script>
+</body>
+</html>
