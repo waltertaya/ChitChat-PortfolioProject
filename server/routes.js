@@ -1,5 +1,8 @@
 const router = require('express').Router();
 const session = require('express-session');
+const nodemailer = require('nodemailer');
+const Mailgen = require('mailgen');
+const generateOTP = require('../DB/security/otp');
 require('dotenv').config();
 
 router.use(session({
@@ -32,7 +35,40 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
-    res.redirect('/login');
+    const { username, password, email } = req.body;
+    let config = {
+        service: 'gmail',
+        auth: {
+            user: process.env.GMAIL_APP_USER,
+            pass: process.env.GMAIL_APP_PASSWORD
+        }
+    }
+    
+    let transporter = nodemailer.createTransport(config);
+    let otp = generateOTP();
+    let message = {
+        from: process.env.GMAIL_APP_USER,
+        to: email,
+        subject: 'Welcome to ChitChat your AI companion',
+        html: `<h1>Welcome to ChitChat</h1><p>Thank you for signing up. Your OTP code is <b>${otp}</b> </p>`,
+        // attachments: [ 
+        //     {
+        //       filename: 'receipt_test.pdf',
+        //       path: 'receipt_test.pdf',
+        //       cid: 'uniqreceipt_test.pdf' 
+        //     }
+        // ]
+    };
+
+    transporter.sendMail(message, (error, info) => {
+        if (error) {
+            console.log(error);
+            res.redirect('/signup');
+        } else {
+            console.log('Email sent: ' + info.response);
+            res.render('otp', { username, password, email, otp });
+        }
+    });
 });
 
 router.use((req, res, next) => {
