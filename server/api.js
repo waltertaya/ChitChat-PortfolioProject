@@ -17,6 +17,7 @@ let previousChats = {};
 api.post('/', async (req, res) => {
 
     const api_key = process.env.API_KEY;
+    const username = req.session.user.username;
 
     // console.log(req.body);
     const userMessage = req.body.userMessage;
@@ -24,6 +25,7 @@ api.post('/', async (req, res) => {
     messages.userMessage = userMessage;
     messages.rules = rules;
     messages.previousChats = previousChats;
+    messages.username = username;
     const genAI = new GoogleGenerativeAI(api_key);
   
     async function run() {

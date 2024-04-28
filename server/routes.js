@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const db = require('../DB/db');
 const User = require('../DB/models/users');
-const Chat = require('../DB/models/chats');
 const nodemailer = require('nodemailer');
 const Mailgen = require('mailgen');
 const generateOTP = require('../DB/security/otp');
@@ -141,14 +140,9 @@ router.post('/update', async (req, res) => {
     }
 });
 
-router.get('/', async (req, res) => {  
-    const userChats = await Chat.findOne({ username: req.session.user.username });
-    if (userChats) {
-        const messages = userChats.messages;
-        res.render('index', { messages });
-    } else {
-        res.render('index');
-    }
+router.get('/', async (req, res) => {
+    const userID = req.session.user._id;
+    res.render('index', { userID });
 });
 
 module.exports = router;

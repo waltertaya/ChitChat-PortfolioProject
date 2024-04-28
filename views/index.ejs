@@ -5,30 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChitChat AI</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
 </head>
 <body>
     <div class="chat-container">
         <div class="chat-box">
-            <% messages.forEach(message => { %>
-                <% if (message.sender === 'user') { %>
-                    <div class="user-message">
-                        <div class="message sent">
-                            <div class="text"><%= message.content %></div>
-                        </div>
-                    </div>
-                <% } else { %>
-                    <div class="message received">
-                        <div class="avatar"></div>
-                        <div class="text"><%= message.content %></div>
-                    </div>
-                <% } %>
-            <% }); %>
+            <div class="message sent">
+                    <div class="text"></div>
+            </div>
+            <div class="message received">
+                <div class="avatar"></div>
+                <div class="text"></div>
+            </div>
         </div>        
         <div class="input-box">
             <input type="text" placeholder="Type your message...">
             <button>Send</button>
         </div>
     </div>
+    <script>
+        const userID = "<%= userID %>";
+    </script>
     <script type="module" src="js/script.js"></script>
 </body>
 </html>
