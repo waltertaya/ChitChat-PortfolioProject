@@ -53,3 +53,10 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+@media screen and (max-width: 768px) {
+    body {
+        justify-content: unset;
+        align-items: unset;
+    }
+}
