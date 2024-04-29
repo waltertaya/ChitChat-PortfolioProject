@@ -26,7 +26,10 @@ body {
     display: block;
     font-weight: bold;
 }
-
+input:focus {
+    border-color: #007bff;
+    outline: none;
+}
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group select {
