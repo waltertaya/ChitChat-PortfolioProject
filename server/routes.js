@@ -36,9 +36,11 @@ router.get('/signup', (req, res) => {
 router.post('/signup', async (req, res) => {
     const { username, password, email, name, gender } = req.body;
     const existingUser = await User.findOne({ username });
-    console.log(existingUser);
-    if (existingUser) {
-        console.log('User already exists');
+    if (username === '' || password === '' || email === '' || name) {
+        res.redirect('/signup');
+    } else if (username === existingUser.username || email === existingUser.email) {
+        res.redirect('/signup');
+    } else if (existingUser) {
         res.redirect('/signup');
     } else {
         let config = {
