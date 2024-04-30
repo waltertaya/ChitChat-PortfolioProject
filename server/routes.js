@@ -122,22 +122,39 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/profile', (req, res) => {
-    res.render('profile');
+    const user = req.session.user;
+    res.render('profile', { user });
 });
 
 router.get('/update', (req, res) => {
-    res.render('edit-profile');
+    const user = req.session.user;
+    res.render('edit-profile', { user });
 });
 
 router.post('/update', async (req, res) => {
-    const { username, password, email, gender } = req.body;
-    const user = await User.findOne({ username });
-    if (user) {
-        user.password = await hashPassword(password);
-        user.email = email;
-        user.gender = gender;
-        await user.save();
-        res.redirect('/profile');
+    const { username, password, email, gender, name } = req.body;
+    // console.log(req.body);
+    if (password === '') {
+        const user = await User.findOne({ username });
+        if (user) {
+            user.password = req.session.user.password;
+            user.email = email;
+            user.gender = gender;
+            user.name = name;
+            await user.save();
+            res.redirect('/profile');
+        }
+    } else {
+        const user = await User.findOne({ username });
+        const hashedPassword = await hashPassword(password);
+        if (user) {
+            user.password = hashedPassword;
+            user.email = email;
+            user.gender = gender;
+            user.name = name;
+            await user.save();
+            res.redirect('/profile');
+        }
     }
 });
 

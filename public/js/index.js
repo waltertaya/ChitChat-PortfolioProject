@@ -36,3 +36,15 @@ function updatePasswordStrengthUI(strength) {
     passwordStrengthText.className = 'strong';
   }
 }
+
+const toggleCheckbox = document.getElementById('toggle-password');
+
+toggleCheckbox.addEventListener('change', function() {
+  if (toggleCheckbox.checked) {
+    // If checked, show password
+    passwordInput.type = 'text';
+  } else {
+    // If unchecked, hide password
+    passwordInput.type = 'password';
+  }
+});

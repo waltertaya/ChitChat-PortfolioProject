@@ -32,6 +32,7 @@ input:focus {
 }
 .form-group input[type="text"],
 .form-group input[type="email"],
+.form-group input[type="password"],
 .form-group select {
     width: 100%;
     padding: 10px;
@@ -39,6 +40,7 @@ input:focus {
     border-radius: 5px;
 }
 .form-group input[type="text"],
+.form-group input[type="password"],
 .form-group input[type="email"] {
     width: 96%;
 }
@@ -52,18 +54,22 @@ button[type="submit"] {
     border-radius: 5px;
     cursor: pointer;
 }
-
+.toggle-checkbox {
+    margin-left: 10px;
+}
 button[type="submit"]:hover {
     background-color: #0056b3;
 }
 @media screen and (max-width: 768px) {
     .form-group input[type="text"],
+    .form-group input[type="password"],
     .form-group input[type="email"] {
         width: 96%;
     }
 }
 @media screen and (max-width: 600px) {
     .form-group input[type="text"],
+    .form-group input[type="password"],
     .form-group input[type="email"] {
         width: 94%;
     }

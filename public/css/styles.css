@@ -48,7 +48,9 @@ select:focus {
     border-color: #007bff;
     outline: none;
 }
-
+.toggle-checkbox {
+    margin-left: 10px;
+}
 button {
     padding: 10px 20px;
     background-color: #007bff;
