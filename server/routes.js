@@ -35,12 +35,11 @@ router.get('/signup', (req, res) => {
 
 router.post('/signup', async (req, res) => {
     const { username, password, email, name, gender } = req.body;
-    const existingUser = await User.findOne({ username });
-    if (username === '' || password === '' || email === '' || name) {
+    const existingUsername = await User.findOne({ username });
+    const existingEmail = await User.findOne({ email });
+    if (username === '' || password === '' || email === '' || name === '') {
         res.redirect('/signup');
-    } else if (username === existingUser.username || email === existingUser.email) {
-        res.redirect('/signup');
-    } else if (existingUser) {
+    } else if (existingUsername || existingEmail) {
         res.redirect('/signup');
     } else {
         let config = {
