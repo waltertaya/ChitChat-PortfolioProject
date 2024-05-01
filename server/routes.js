@@ -44,6 +44,9 @@ router.post('/signup', async (req, res) => {
     } else {
         let config = {
             service: 'gmail',
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
             auth: {
                 user: process.env.GMAIL_APP_USER,
                 pass: process.env.GMAIL_APP_PASSWORD
@@ -58,13 +61,6 @@ router.post('/signup', async (req, res) => {
             html: `<h1> 🎉 Welcome to ChitChat! 🎉 </h1>
             <br><br> <p> Thank you for joining us! Your One-Time Passcode (OTP) awaits:
             <h2><strong>${otp}</strong><h2> <br><br> Happy chatting! </p>`,
-            // attachments: [ 
-            //     {
-            //       filename: 'receipt_test.pdf',
-            //       path: 'receipt_test.pdf',
-            //       cid: 'uniqreceipt_test.pdf' 
-            //     }
-            // ]
         };
 
         transporter.sendMail(message, (error, info) => {
