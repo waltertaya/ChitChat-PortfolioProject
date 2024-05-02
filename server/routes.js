@@ -7,6 +7,17 @@ const generateOTP = require('../DB/security/otp');
 const { hashPassword, comparePassword } = require('../DB/security/auth');
 require('dotenv').config();
 
+const { storage } = require('../DB/storage');
+const multer = require('multer');
+const upload = multer({ storage });
+
+//we used upload.single to tell "multer" to upload
+// only single image 
+router.post('/upload', upload.single('image'), (req, res) => {
+    console.log(req.file);
+    res.send('Done');
+  });
+
 
 router.get('/login', (req, res) => {
     res.render('login');
@@ -60,7 +71,7 @@ router.post('/signup', async (req, res) => {
             subject: 'Welcome to ChitChat your AI companion',
             html: `<h1> 🎉 Welcome to ChitChat! 🎉 </h1>
             <br><br> <p> Thank you for joining us! Your One-Time Passcode (OTP) awaits:
-            <h2><strong>${otp}</strong><h2> <br><br> Happy chatting! </p>`,
+            <h2><strong>${otp}</strong><h2> <br><br> Happy chatting! </p>`
         };
 
         transporter.sendMail(message, (error, info) => {
