@@ -16,8 +16,12 @@ const upload = multer({ storage });
 router.post('/upload', upload.single('image'), (req, res) => {
     console.log(req.file);
     res.send('Done');
-  });
+});
 
+
+router.get('/', (req, res) => {
+    res.render('landing-page');
+});
 
 router.get('/login', (req, res) => {
     res.render('login');
@@ -31,7 +35,7 @@ router.post('/login', async (req, res) => {
         if (match) {
             req.session.loggedIn = true;
             req.session.user = user;
-            res.redirect('/');
+            res.redirect('/chats');
         } else {
             res.redirect('/login');
         }
@@ -119,7 +123,7 @@ router.use((req, res, next) => {
     if (req.session.loggedIn) {
         next();
     } else {
-        res.redirect('/login');
+        res.redirect('/');
     }
 });
 
@@ -165,7 +169,7 @@ router.post('/update', async (req, res) => {
     }
 });
 
-router.get('/', async (req, res) => {
+router.get('/chats', async (req, res) => {
     const userID = req.session.user._id;
     res.render('index', { userID });
 });
