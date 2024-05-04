@@ -105,13 +105,23 @@ nav ul li a {
 }
 
 /* features sections */
+#features {
+    .container {
+        /* justify-content: unset; */
+        align-items: center;
+    }
+}
 .feature {
-    text-align: center;
-    margin-bottom: 40px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.content {
+    max-width: 500px;
 }
 .feature img {
     width: 100%;
-    max-width: 300px;
+    max-width: 100px;
     display: block;
     margin: 0 auto 20px;
 }
