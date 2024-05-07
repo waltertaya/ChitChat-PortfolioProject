@@ -7,6 +7,9 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    user-select: none;
+    box-sizing: border-box;
+    width: 100%;
 }
 .container {
     padding-left: 20px;
@@ -56,6 +59,8 @@ section {
         margin: 0 auto;
         border-radius: 0;
         width: 100%;
+        padding: 0;
+        text-align: center;
     }
 }
 #intro img {
@@ -115,6 +120,15 @@ nav ul li a {
     display: flex;
     gap: 20px;
     align-items: center;
+}
+@media screen and (max-width: 768px){
+    .feature {
+        flex-direction: column;
+    }
+    #feature-2 {
+        /* reverse flex column */
+        flex-direction: column-reverse;
+    }
 }
 .content {
     max-width: 500px;
