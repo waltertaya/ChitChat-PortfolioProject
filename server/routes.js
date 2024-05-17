@@ -125,8 +125,9 @@ router.get('/logout', (req, res) => {
     res.redirect('/login');
 });
 
-router.get('/profile', (req, res) => {
-    const user = req.session.user;
+router.get('/profile', async (req, res) => {
+    const userId = req.session.user._id;
+    const user = await User.findOne({ _id: userId })
     res.render('profile', { user });
 });
 
