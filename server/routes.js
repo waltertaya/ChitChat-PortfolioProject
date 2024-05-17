@@ -11,13 +11,6 @@ const { storage } = require('../DB/storage');
 const multer = require('multer');
 const upload = multer({ storage });
 
-//we used upload.single to tell "multer" to upload
-// only single image 
-router.post('/upload', upload.single('image'), (req, res) => {
-    console.log(req.file);
-    res.send('Done');
-});
-
 
 router.get('/', (req, res) => {
     res.render('landing-page');
@@ -135,6 +128,15 @@ router.get('/logout', (req, res) => {
 router.get('/profile', (req, res) => {
     const user = req.session.user;
     res.render('profile', { user });
+});
+
+//we used upload.single to tell "multer" to upload
+// only single image 
+router.post('/profile', upload.single('image'), (req, res) => {
+    // const image = req.body.image;
+    // // console.log(JSON.stringify(image));
+    // console.log(JSON.stringify(req.file));
+    res.redirect('/chats');
 });
 
 router.get('/update', (req, res) => {

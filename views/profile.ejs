@@ -16,14 +16,14 @@
             <div class="profile-image" style="user-select: none;">
                 <img src="img/profile.jpeg" alt="Profile Image">
                 <div class="edit-profile">
-                    <form action="/upload" method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <div class="form-file custom-file">
-                                <input class="form-control" type="file" id="formFile" name="image" multiple>
-                                <label class="form-file-label" for="image"></label>
+                            <div>
+                                <input type="file" name="image">
+                                <label for="image"></label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success">Upload</button>
+                        <button type="submit">Upload</button>
                     </form>
                 </div>
                 <button class="edit-profile-btn" ><svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24"><g fill="none"><path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 16l-1 4l4-1L19.586 7.414a2 2 0 0 0 0-2.828l-.172-.172a2 2 0 0 0-2.828 0z"/><path fill="black" d="m5 16l-1 4l4-1L18 9l-3-3z"/><path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 6l3 3m-5 11h8"/></g></svg></button>
