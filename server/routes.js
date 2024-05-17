@@ -140,8 +140,9 @@ router.post('/profile', upload.single('image'), (req, res) => {
     res.redirect('/chats');
 });
 
-router.get('/update', (req, res) => {
-    const user = req.session.user;
+router.get('/update', async (req, res) => {
+    const userId = req.session.user._id;
+    const user = await User.findOne({ _id: userId })
     res.render('edit-profile', { user });
 });
 
