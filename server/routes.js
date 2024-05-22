@@ -50,14 +50,22 @@ router.post('/signup', async (req, res) => {
     } else if (existingUsername || existingEmail) {
         res.redirect('/signup');
     } else {
+        // let config = {
+        //     service: 'gmail',
+        //     host: 'smtp.gmail.com',
+        //     port: 587,
+        //     secure: false,
+        //     auth: {
+        //         user: process.env.GMAIL_APP_USER,
+        //         pass: process.env.GMAIL_APP_PASSWORD
+        //     }
+        // };
         let config = {
-            service: 'gmail',
-            host: 'smtp.gmail.com',
+            host: "live.smtp.mailtrap.io",
             port: 587,
-            secure: false,
             auth: {
-                user: process.env.GMAIL_APP_USER,
-                pass: process.env.GMAIL_APP_PASSWORD
+              user: process.env.GMAIL_USER,
+              pass: process.env.GMAIL_PASSWORD
             }
         };
         let transporter = nodemailer.createTransport(config);
